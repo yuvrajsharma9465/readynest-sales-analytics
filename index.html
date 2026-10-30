@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadyNest Corp - Sales & Performance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen p-6">
+    <div class="max-w-7xl mx-auto space-y-6">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700">
+            <div>
+                <h1 class="text-3xl font-bold text-emerald-400">ReadyNest Corp.</h1>
+                <p class="text-slate-400 text-sm mt-1">Dataset Analysis & Executive Reporting Dashboard</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-4">
+                <span class="bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-xl text-sm border border-emerald-500/20">Status: Live EDA Active</span>
+            </div>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
+                <p class="text-slate-400 text-sm">Total Revenue</p>
+                <h3 class="text-2xl font-bold text-white mt-1">$11,950.00</h3>
+                <span class="text-xs text-emerald-400 mt-2 inline-block">↑ +12.4% vs last period</span>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
+                <p class="text-slate-400 text-sm">Total Net Profit</p>
+                <h3 class="text-2xl font-bold text-white mt-1">$2,455.00</h3>
+                <span class="text-xs text-emerald-400 mt-2 inline-block">Avg Margin: 20.5%</span>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
+                <p class="text-slate-400 text-sm">Total Units Sold</p>
+                <h3 class="text-2xl font-bold text-white mt-1">78 Units</h3>
+                <span class="text-xs text-blue-400 mt-2 inline-block">Across 3 Categories</span>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
+                <p class="text-slate-400 text-sm">Avg Discount Applied</p>
+                <h3 class="text-2xl font-bold text-white mt-1">6.0%</h3>
+                <span class="text-xs text-amber-400 mt-2 inline-block">Optimized Tier</span>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 class="text-lg font-semibold mb-4 text-emerald-300">Sales Trend by Category</h3>
+                <div class="relative h-64"><canvas id="salesChart"></canvas></div>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 class="text-lg font-semibold mb-4 text-emerald-300">Regional Performance Breakdown</h3>
+                <div class="relative h-64"><canvas id="regionChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctxSales = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctxSales, {
+            type: 'bar',
+            data: {
+                labels: ['Furniture', 'Technology', 'Office Supplies'],
+                datasets: [{
+                    label: 'Sales ($)',
+                    data: [3350, 8200, 450],
+                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b'],
+                    borderRadius: 8
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        const ctxRegion = document.getElementById('regionChart').getContext('2d');
+        new Chart(ctxRegion, {
+            type: 'doughnut',
+            data: {
+                labels: ['North', 'South', 'East', 'West'],
+                datasets: [{
+                    data: [6050, 3400, 450, 2100],
+                    backgroundColor: ['#10b981', '#6366f1', '#f59e0b', '#ec4899']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    </script>
+</body>
+</html>
